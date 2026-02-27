@@ -1,0 +1,88 @@
+{
+  "name": "@loonylabs/tta-middleware",
+  "version": "0.1.0",
+  "description": "Provider-agnostic Text-to-Audio middleware for music and sound effect generation. Supports ElevenLabs and Google Lyria.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "LICENSE",
+    "README.md",
+    ".env.example"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "test": "npm run test:unit",
+    "test:unit": "jest --testPathPattern=tests/unit",
+    "test:unit:watch": "jest --testPathPattern=tests/unit --watch",
+    "test:unit:coverage": "jest --testPathPattern=tests/unit --coverage",
+    "test:integration": "cross-env TTA_INTEGRATION_TESTS=true jest --testPathPattern=tests/integration",
+    "test:ci": "jest --runInBand --ci --coverage --testPathPattern=tests/unit",
+    "test:manual:elevenlabs-sfx": "ts-node scripts/manual-test-elevenlabs-sfx.ts",
+    "test:manual:elevenlabs-music": "ts-node scripts/manual-test-elevenlabs-music.ts",
+    "test:manual:google-lyria": "ts-node scripts/manual-test-google-lyria.ts",
+    "lint": "eslint src/**/*.ts",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "clean": "node -e \"const fs=require('fs');if(fs.existsSync('dist'))fs.rmSync('dist',{recursive:true})\"",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm run clean && npm run build && npm run test"
+  },
+  "keywords": [
+    "tta",
+    "text-to-audio",
+    "audio-generation",
+    "music-generation",
+    "sound-effects",
+    "ai",
+    "elevenlabs",
+    "google-lyria",
+    "vertex-ai",
+    "middleware",
+    "provider-agnostic",
+    "typescript"
+  ],
+  "author": "loonylabs-dev",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/loonylabs-dev/tta-middleware.git"
+  },
+  "bugs": {
+    "url": "https://github.com/loonylabs-dev/tta-middleware/issues"
+  },
+  "homepage": "https://github.com/loonylabs-dev/tta-middleware#readme",
+  "peerDependencies": {
+    "@elevenlabs/elevenlabs-js": ">=2.0.0",
+    "@google-cloud/aiplatform": ">=3.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@elevenlabs/elevenlabs-js": {
+      "optional": true
+    },
+    "@google-cloud/aiplatform": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@elevenlabs/elevenlabs-js": "^2.36.0",
+    "@google-cloud/aiplatform": "^3.29.0",
+    "@types/jest": "^29.5.8",
+    "@types/node": "^20.10.0",
+    "@typescript-eslint/eslint-plugin": "^6.13.0",
+    "@typescript-eslint/parser": "^6.13.0",
+    "cross-env": "^10.1.0",
+    "dotenv": "^17.2.3",
+    "eslint": "^8.54.0",
+    "jest": "^29.7.0",
+    "prettier": "^3.1.0",
+    "ts-jest": "^29.1.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
