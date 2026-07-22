@@ -1,7 +1,7 @@
 {
   "name": "@loonylabs/tta-middleware",
-  "version": "0.1.0",
-  "description": "Provider-agnostic Text-to-Audio middleware for music and sound effect generation. Supports ElevenLabs and Google Lyria.",
+  "version": "0.2.0",
+  "description": "Provider-agnostic Text-to-Audio middleware for music and sound effect generation. Supports ElevenLabs, Google Lyria, and Stability AI.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
@@ -21,6 +21,8 @@
     "test:manual:elevenlabs-sfx": "ts-node scripts/manual-test-elevenlabs-sfx.ts",
     "test:manual:elevenlabs-music": "ts-node scripts/manual-test-elevenlabs-music.ts",
     "test:manual:google-lyria": "ts-node scripts/manual-test-google-lyria.ts",
+    "test:manual:stability-ai-sfx": "ts-node scripts/manual-test-stability-ai-sfx.ts",
+    "test:manual:stability-ai-music": "ts-node scripts/manual-test-stability-ai-music.ts",
     "lint": "eslint src/**/*.ts",
     "format": "prettier --write \"src/**/*.ts\"",
     "clean": "node -e \"const fs=require('fs');if(fs.existsSync('dist'))fs.rmSync('dist',{recursive:true})\"",
@@ -37,6 +39,8 @@
     "elevenlabs",
     "google-lyria",
     "vertex-ai",
+    "stability-ai",
+    "stable-audio",
     "middleware",
     "provider-agnostic",
     "typescript"

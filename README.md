@@ -30,7 +30,7 @@
 
 ## Features
 
-- **Multi-Provider Architecture** — ElevenLabs (SFX + Music) and Google Lyria (Instrumental Music)
+- **Multi-Provider Architecture** — ElevenLabs (SFX + Music), Google Lyria (Instrumental Music), and Stability AI (SFX + Music)
 - **Discriminated Union Requests** — Full type safety with separate request types for sound effects and music
 - **Retry Logic** — Exponential backoff with jitter for transient errors (429, 5xx, timeouts)
 - **Dry Mode** — Validate requests without making API calls (no cost)
@@ -47,6 +47,7 @@ npm install @loonylabs/tta-middleware
 # Install provider SDK(s) you need:
 npm install @elevenlabs/elevenlabs-js    # For ElevenLabs
 npm install @google-cloud/aiplatform     # For Google Lyria
+# Stability AI requires no additional SDK (uses native fetch)
 ```
 
 ```typescript
@@ -81,6 +82,7 @@ const contentType = sfxResult.audio[0].contentType; // 'audio/mpeg'
 | **ElevenLabs** | `eleven_text_to_sound_v2` | Sound Effects | Yes | No | 30s |
 | **ElevenLabs** | `music_v1` | Music | No | No | 600s |
 | **Google Lyria** | `lyria-002` | Music | No | Yes | 600s |
+| **Stability AI** | `stable-audio-2.5` | Music + SFX | No | Yes | 190s |
 
 ## API Reference
 
@@ -234,6 +236,8 @@ npm run test:unit:coverage
 npm run test:manual:elevenlabs-sfx
 npm run test:manual:elevenlabs-music
 npm run test:manual:google-lyria
+npm run test:manual:stability-ai-sfx
+npm run test:manual:stability-ai-music
 ```
 
 ## Contributing

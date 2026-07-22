@@ -3,7 +3,7 @@
 ## Prerequisites
 
 - Node.js 18+
-- An ElevenLabs API key and/or a Google Cloud account with Vertex AI enabled
+- An API key for at least one provider: ElevenLabs, Google Cloud (Vertex AI), or Stability AI
 
 ## Installation
 
@@ -19,6 +19,8 @@ npm install @elevenlabs/elevenlabs-js
 
 # For Google Lyria (instrumental music via Vertex AI)
 npm install @google-cloud/aiplatform
+
+# For Stability AI (music + SFX) — no additional SDK needed
 ```
 
 ## Configuration
@@ -40,6 +42,15 @@ npm install @google-cloud/aiplatform
    GOOGLE_CLOUD_PROJECT=your-project-id
    GOOGLE_APPLICATION_CREDENTIALS=./service-account.json
    GOOGLE_CLOUD_REGION=us-central1
+   ```
+
+### Stability AI
+
+1. Create an account at [platform.stability.ai](https://platform.stability.ai/)
+2. Generate an API key under "API Keys"
+3. Set the environment variable:
+   ```bash
+   STABILITY_AI_API_KEY=your-api-key
    ```
 
 ## Quick Start
@@ -93,14 +104,45 @@ const result = await service.generate(
 );
 ```
 
+### Music + SFX Generation (Stability AI)
+
+```typescript
+import { TTAService, StabilityAITTAProvider, TTAProvider } from '@loonylabs/tta-middleware';
+
+const service = new TTAService();
+service.registerProvider(new StabilityAITTAProvider());
+
+// Sound effect
+const sfx = await service.generate(
+  {
+    type: 'sound_effect',
+    prompt: 'Thunder crash with echoes',
+    durationSeconds: 10,
+  },
+  TTAProvider.STABILITY_AI
+);
+
+// Music
+const music = await service.generate(
+  {
+    type: 'music',
+    prompt: 'Ambient electronic, 80 BPM, soft synth pads',
+    musicLengthMs: 30000,
+    negativePrompt: 'vocals, singing',
+  },
+  TTAProvider.STABILITY_AI
+);
+```
+
 ## Provider Comparison
 
-| Feature | ElevenLabs | Google Lyria |
-|---------|-----------|--------------|
-| Sound Effects | Yes | No |
-| Music | Yes | Yes |
-| Looping | Yes (SFX) | No |
-| Instrumental Only | No | Yes |
-| Max Duration | 30s (SFX) / 600s (Music) | 600s |
-| Negative Prompt | No | Yes |
-| Seed (reproducible) | No | Yes |
+| Feature | ElevenLabs | Google Lyria | Stability AI |
+|---------|-----------|--------------|--------------|
+| Sound Effects | Yes | No | Yes |
+| Music | Yes | Yes | Yes |
+| Looping | Yes (SFX) | No | No |
+| Instrumental Only | No | Yes | Yes |
+| Max Duration | 30s (SFX) / 600s (Music) | 600s | 190s |
+| Negative Prompt | No | Yes | Yes |
+| Seed (reproducible) | No | Yes | Yes |
+| Additional SDK | `@elevenlabs/elevenlabs-js` | `@google-cloud/aiplatform` | None (native fetch) |

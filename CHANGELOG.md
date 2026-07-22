@@ -5,6 +5,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.0] - 2026-07-22
+
+### Added
+
+- **Stability AI Provider**: Music and sound effect generation via Stable Audio 2.5 (`stable-audio-2.5`)
+  - Text-to-audio generation for both music and sound effects
+  - Uses native `fetch` (Node 18+) — no additional SDK dependency required
+  - Supports `duration`, `seed`, `negative_prompt`, and `output_format` parameters
+  - Duration up to 190 seconds (instrumental only)
+  - Configurable base URL for custom API endpoints
+- Provider name parsing for `stability-ai`, `stable-audio`, and variants
+- Manual test scripts for Stability AI (`test:manual:stability-ai-sfx`, `test:manual:stability-ai-music`)
+- Unit tests for Stability AI provider (18 test cases)
+- Provider documentation (`docs/providers/stability-ai.md`)
+
 ## [0.1.0] - 2026-02-27
 
 ### Added

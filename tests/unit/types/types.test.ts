@@ -26,11 +26,12 @@ describe('TTAProvider enum', () => {
   it('should have correct values', () => {
     expect(TTAProvider.ELEVENLABS).toBe('elevenlabs');
     expect(TTAProvider.GOOGLE_LYRIA).toBe('google-lyria');
+    expect(TTAProvider.STABILITY_AI).toBe('stability-ai');
   });
 
-  it('should have exactly 2 providers', () => {
+  it('should have exactly 3 providers', () => {
     const providers = Object.values(TTAProvider);
-    expect(providers).toHaveLength(2);
+    expect(providers).toHaveLength(3);
   });
 });
 

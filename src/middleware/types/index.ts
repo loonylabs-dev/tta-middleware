@@ -11,6 +11,8 @@ export enum TTAProvider {
   ELEVENLABS = 'elevenlabs',
   /** Google Lyria (Vertex AI) - Instrumental music generation. */
   GOOGLE_LYRIA = 'google-lyria',
+  /** Stability AI (Stable Audio) - Music and sound effect generation. */
+  STABILITY_AI = 'stability-ai',
 }
 
 // ============================================================

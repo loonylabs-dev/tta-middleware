@@ -86,6 +86,12 @@ describe('TTAService', () => {
         ['google_lyria', TTAProvider.GOOGLE_LYRIA],
         ['googlelyria', TTAProvider.GOOGLE_LYRIA],
         ['lyria', TTAProvider.GOOGLE_LYRIA],
+        ['stability-ai', TTAProvider.STABILITY_AI],
+        ['stability_ai', TTAProvider.STABILITY_AI],
+        ['stabilityai', TTAProvider.STABILITY_AI],
+        ['stable-audio', TTAProvider.STABILITY_AI],
+        ['stable_audio', TTAProvider.STABILITY_AI],
+        ['stableaudio', TTAProvider.STABILITY_AI],
       ];
 
       for (const [envValue, expected] of formats) {

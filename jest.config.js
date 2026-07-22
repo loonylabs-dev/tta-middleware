@@ -39,8 +39,10 @@ module.exports = {
     //   - TTA_INTEGRATION_TESTS=true npm run test:integration
     //   - npm run test:manual:elevenlabs-sfx
     //   - npm run test:manual:google-lyria
+    //   - npm run test:manual:stability-ai-sfx
     '!src/middleware/services/tta/providers/elevenlabs-provider.ts',
     '!src/middleware/services/tta/providers/google-lyria-provider.ts',
+    '!src/middleware/services/tta/providers/stability-ai-provider.ts',
     // Debug utils rely on filesystem I/O - tested via manual tests
     '!src/middleware/services/tta/utils/debug-tta.utils.ts',
   ],
